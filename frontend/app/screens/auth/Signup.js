@@ -1,21 +1,22 @@
+import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
 import {
   Image,
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  TextInput,
   Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import React, {useState} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {SIZES, COLORS} from '../../constants';
+import { showMessage } from 'react-native-flash-message';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Feather from 'react-native-vector-icons/Feather';
-import {useNavigation} from '@react-navigation/native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { COLORS, SIZES } from '../../constants';
+import API from '../../services/GlobalAPI';
 // import 'react-native-gesture-handler';
 
 const Signup = () => {
@@ -23,6 +24,12 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState('eye');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [location, setLocation] = useState('');
+  const [phoneNumber,setPhoneNumber]=useState('');
+  const [token, setToken] = useState(''); 
+  const [roleID, setRoleID] = useState(''); 
   const handlePasswordVisibility = () => {
     if (rightIcon === 'eye') {
       setRightIcon('eye-off');
@@ -32,6 +39,85 @@ const Signup = () => {
       setPasswordVisibility(!passwordVisibility);
     }
   };
+
+
+  
+  const handleSignup = async () => {
+    try {
+      const loginData = {
+        username: 'Admin',
+        password: '123456',
+      };
+
+    const signupData = {
+      username,
+      email,
+      address: location,
+      password,
+      firstName: 'DefaultFirstName', 
+      lastName: 'DefaultLastName',   
+      phone:phoneNumber,
+      roleID,
+      avatar: {
+        public_id: 'string',
+        url: 'string',
+      },
+    };
+    const authResponse = await API.requestPOST_Login('/auth/login', loginData);
+    setToken(authResponse.token)
+    console.log(token)
+    const response = await API.requestSignup(`/users/create?${token}`, signupData);
+
+    
+    if ( response.success) {
+     
+      console.log('Signup successful:', response.message);
+      console.log('User details:', response.user);
+      showMessage({
+        message: 'Đăng ký thành công',
+        type: 'success',
+      });
+      navigation.navigate('Login');
+     
+
+    } else {
+  
+      console.log('Signup failed:', response.message);
+      
+    }
+  } catch (error) {
+   
+    console.error('Error during signup:', error);
+   
+  }
+
+  };
+const getAuthToken = async () => {
+  const loginData = {
+    username: 'Admin',
+    password: '123456',
+  };
+
+  try {
+    const authResponse = await API.requestPost_Role('/auth/login', loginData);
+    setToken(authResponse)
+    if (authResponse  && authResponse.userId) {
+      console.log('Login successful:', authResponse);
+      setRoleID(authResponse.userId);
+      console.log('RoleID:', authResponse.userId); 
+
+
+      
+    } else {
+      console.log('Login failed');
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+  }
+};
+
+
+
 
   return (
     <ScrollView>
@@ -51,7 +137,10 @@ const Signup = () => {
                   color={COLORS.gray}
                   style={styles.iconStyle}
                 />
-                <TextInput placeholder="Username" />
+                <TextInput placeholder="Username" 
+                  onChangeText={(text) => setUsername(text)}
+                  value={username}
+                />
               </View>
             </View>
 
@@ -64,9 +153,29 @@ const Signup = () => {
                   color={COLORS.gray}
                   style={styles.iconStyle}
                 />
-                <TextInput placeholder="Email" />
+                <TextInput placeholder="Email" 
+                onChangeText={(text) => setEmail(text)}
+                value={email}
+                />
               </View>
             </View>
+
+    
+            <View style={styles.wrapper}>
+                <Text style={styles.label}>Phone number</Text>
+                <View style={styles.inputWrapper}>
+                  <MaterialCommunityIcons
+                    name="phone-outline"
+                    size={20}
+                    color={COLORS.gray}
+                    style={styles.iconStyle}
+                  />
+                  <TextInput placeholder="Phone number"
+                  onChangeText={(text) => setPhoneNumber(text)}
+                  value={phoneNumber}
+                  />
+                </View>
+              </View>
 
             <View style={styles.wrapper}>
               <Text style={styles.label}>Location</Text>
@@ -77,7 +186,10 @@ const Signup = () => {
                   color={COLORS.gray}
                   style={styles.iconStyle}
                 />
-                <TextInput placeholder="Location" />
+                <TextInput placeholder="Location" 
+                onChangeText={(text) => setLocation(text)}
+                value={location}
+                />
               </View>
             </View>
 
@@ -108,16 +220,21 @@ const Signup = () => {
             </View>
 
             <Pressable
+           onPress={() => {
+            handleSignup();
+            
+          }}
               style={{
                 backgroundColor: COLORS.primary,
                 borderRadius: 6,
-                padding: 15,
+                padding: 10,
+                fontWeight:40
               }}>
               <Text
                 style={{
                   textAlign: 'center',
                   color: 'white',
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: 'bold',
                 }}>
                 Đăng ký
@@ -126,12 +243,13 @@ const Signup = () => {
 
             <TouchableOpacity
               onPress={() => navigation.navigate('Login')}
-              style={{marginTop: 15}}>
+              style={{marginTop: 1}}>
               <Text
                 style={{
                   textAlign: 'center',
                   color: COLORS.black,
                   fontSize: 16,
+
                 }}>
                 Đã có tài khoản?{' '}
                 <Text

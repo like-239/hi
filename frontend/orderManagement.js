@@ -36,7 +36,7 @@ const orderManagement =()=>{
   const [productList, setProductList] = useState(['Product 1', 'Product 2', 'Product 3']);
   const [orderList, setOrderList] = useState(['Order 1', 'Order 2', 'Order 3']);
 
-  return(
+  /*return(
     <View key={order.id} style={styles.wrapper}>
         <TouchableOpacity
           style={styles.container2}
@@ -71,7 +71,7 @@ const orderManagement =()=>{
       </View>
 
       
-  );
+  );*/
 
 
 

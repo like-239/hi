@@ -32,13 +32,16 @@ import ProductCateList from './app/screens/ProductCateList';
 import BottomTabNavigationSeller from './app/navigation/BottomTabNavSeller';
 import RecommendedProducts from './app/screens/RecommendedProducts';
 import SeenProducts from './app/screens/SeenProducts';
-import OrderDetail from './app/screens/OrderDetail';
 import Login from './app/screens/auth/Login';
 import Signup from './app/screens/auth/Signup';
 import FlashMessage from 'react-native-flash-message';
 import Cart from './app/screens/Cart';
 import Paying from './app/screens/Paying';
-
+import ProfileScreen from './app/screens/profile/ProfileScreen';
+import OrderManagement from './app/screens/profile/OrderManagement';
+import SellerProfile from './app/screens/profile/SellerProfile';
+import OrderDetail from './app/screens/profile/OrderDetail';
+import UserDetails from './app/screens/profile/UserDetails';
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
@@ -86,11 +89,7 @@ function App(): JSX.Element {
           component={SeenProducts}
           options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="OrderDetail"
-          component={OrderDetail}
-          options={{headerShown: false}}
-        />
+      
         <Stack.Screen
           name="Cart"
           component={Cart}
@@ -101,7 +100,34 @@ function App(): JSX.Element {
           component={Paying}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
+          options={{headerShown: false}}
+        />
+      <Stack.Screen
+          name="OrderManagement"
+          component={OrderManagement}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="SellerProfile"
+          component={SellerProfile}
+          options={{headerShown: false}}
+        />
+          <Stack.Screen
+          name="OrderDetail"
+          component={OrderDetail}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="UserDetails"
+          component={UserDetails}
+          options={{headerShown: false}}
+        />
+      
       </Stack.Navigator>
+    
       <FlashMessage position={"bottom"} />
     </NavigationContainer>
     

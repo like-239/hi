@@ -29,6 +29,7 @@ const Login = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState('eye');
   const [userName, setUserName] = useState('');
+  const [userEmail,setUserEmail]=useState('');
   const [message, setMessage] = useState('');
 
   const handlePasswordVisibility = () => {
@@ -47,10 +48,36 @@ const Login = () => {
       password: password,
     };
 
+    const getTokenData={
+      username: 'Admin',
+      password: '123456',
+    };
     const response = await API.requestPOST_Login('/auth/login', loginData);
+
+   
+    
     if (response && response.token) {
       await AsyncStorage.setItem('userToken', response.token);
       await AsyncStorage.setItem('userId', response.userId); 
+      await AsyncStorage.setItem('userEmail', userEmail);
+      
+      const userID=response.userId;
+      
+      const responsess=await API.requestPOST_Login('/auth/login', getTokenData)
+      const userToken=responsess.token;
+      const responses = await API.requestGET_USER_DETAILS(`/users/details?id=${userID}&token=${userToken}`);
+      
+      const { user } = responses;
+      const { username ,email} = user;
+  
+      await AsyncStorage.setItem('username', username);
+      await AsyncStorage.setItem('email', email);
+
+      console.log(responses.username,'+',responses.email);
+
+     
+      console.log('ID',userID);
+
       // async function getItem(item) {
       //   try {
       //     const value = await AsyncStorage.getItem(item);
@@ -62,11 +89,13 @@ const Login = () => {
       // }
       // getItem('userToken');
       if (response.userRoleId == '653a2551a823940702a4b910' || response.userRoleId == "653a2519a823940702a4b90a") {
-        navigation.navigate('BottomTabSeller');
+        navigation.navigate('BottomTabSeller', { username: response.username, userEmail: response.userEmail });
+       
         setUserName('');
         setPassword('');
       } else {
-        navigation.navigate('BottomTabBuyer');
+        navigation.navigate('BottomTabBuyer', { username: response.username, userEmail: response.userEmail });
+      
         setUserName('');
         setPassword('');
       }
@@ -110,6 +139,9 @@ const Login = () => {
                 />
               </View>
             </View>
+
+            
+          
 
             <View style={styles.wrapper}>
               <Text style={styles.label}>Password</Text>

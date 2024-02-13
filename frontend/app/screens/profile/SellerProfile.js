@@ -29,17 +29,11 @@ const ProfileScreen = () => {
         const storedUsername = await AsyncStorage.getItem('username');
         const storedUserEmail = await AsyncStorage.getItem('email');
         const storedToken = await AsyncStorage.getItem('token');
-          //console.log(storedToken);
-       //console.log("UserName",storedUsername);
-       
+        
           setUsername(storedUsername);
           setUserEmail(storedUserEmail);
         
-          const getTokenData={
-            username: 'Admin',
-            password: '123456',
-          };
-          const response = await API.requestPOST_Login('/auth/login', loginData);
+        setToken(storedToken);
         
       } catch (error) {
         console.log('Error getting user details:', error);
@@ -47,7 +41,7 @@ const ProfileScreen = () => {
     };
 
     getUserDetails();
-  }, []); // Chạy chỉ một lần sau khi màn hình được tạo
+  }, []); 
 
   const LogOut = async () => {
     try {
@@ -124,9 +118,13 @@ const ProfileScreen = () => {
           <Text style={styles.menuText}>{userEmail}</Text>
         </View>
         </View>
+        
 
 
-        <TouchableOpacity onPress={() => navigation.navigate('OrderDetail')}>
+      
+
+
+        <TouchableOpacity onPress={() => navigation.navigate('OrderManagement')}>
 
   <View style={styles.menuItem}>
   <MaterialCommunityIcons
@@ -139,19 +137,6 @@ const ProfileScreen = () => {
   </View>
 </TouchableOpacity>
 
-
-
-        <TouchableOpacity onPress={()=>navigation.navigate('Cart')}>
-        <View style={styles.menuItem}>
-        <MaterialCommunityIcons
-                  name="cart"
-                  size={20}
-                  color={COLORS.gray}
-                  style={styles.iconStyle}
-                />
-          <Text style={styles.menuText}>Cart</Text>
-        </View>
-        </TouchableOpacity>
 
 
 
@@ -177,18 +162,6 @@ const ProfileScreen = () => {
                   style={styles.iconStyle}
                 />
     <Text style={styles.menuText}>Log out</Text>
-  </View>
-</TouchableOpacity>
-
-<TouchableOpacity onPress={()=>navigation.navigate('UserDetails')}>
-  <View style={styles.menuItem}>
-  <MaterialCommunityIcons
-                  name="logout"
-                  size={20}
-                  color={COLORS.gray}
-                  style={styles.iconStyle}
-                />
-    <Text style={styles.menuText}>Update your profile </Text>
   </View>
 </TouchableOpacity>
 
@@ -233,12 +206,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 },
 menuText:{
+  
   color:COLORS.gray,
   marginHorizontal:20,
   fontWeight:'600',
   fontSize:14,
-  lineHeight:26,
-  textAlign: 'center',
+  lineHeight:26
 },
 loginBtn:{
   backgroundColor:COLORS.secondary,
@@ -253,6 +226,7 @@ menuItem:{
   paddingHorizontal:35,
   borderColor:COLORS.gray2,
   borderBottomWidth:1,
+
 //paddingBottom:20
   
 },

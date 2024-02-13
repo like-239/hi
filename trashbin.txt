@@ -1,0 +1,373 @@
+// Thêm state cho token
+ 
+/*Bước 2: Sử dụng useEffect để gọi API đăng nhập khi component được render
+useEffect(() => {
+  getAuthToken();
+}, [])*/;
+ 
+label1
+ 
+ label: {
+    fontWeight: 'bold',
+    fontSize: SIZES.medium,
+    marginBottom: 5,
+    marginEnd: 5,
+    color: COLORS.black,
+  },
+ 
+<View style={styles.wrapper}>
+              <Text style={styles.label}>Email</Text>
+              <View style={styles.inputWrapper}>
+                <MaterialCommunityIcons
+                  name="email-outline"
+                  size={20}
+                  color={COLORS.gray}
+                  style={styles.iconStyle}
+                />
+                <TextInput placeholder="Email" 
+                  onChangeText={(text) => setUserEmail(text)}
+                  value={userEmail}
+                />
+              </View>
+            </View>
+ 
+//paddingVertical:13,
+    //paddingHorizontal:35,
+ 
+placeholder="Username" 
+ 
+ //marginBottom: 5,
+    //marginEnd: 5,
+ 
+style={}
+ 
+</View>
+ 
+
+              <View >
+ 
+  <MaterialCommunityIcons
+                  name="face-man-profile"
+                  size={20}
+                  color={COLORS.gray}
+                  style={styles.iconStyle}
+                />
+ 
+style={styles.inputWrapper}
+ 
+<Text style={styles.label}>Username</Text>
+ 
+ setUserEmail(storedUserEmail);
+ 
+//paddingBottom:20
+ 
+console.log(responses);
+ 
+  setToken(storedToken);
+ 
+ const storedToken = await AsyncStorage.getItem('userToken');
+ 
+ setToken(storedToken);
+ 
+ console.log('Token', userToken);
+ 
+ async function removeItemValue(key) {
+        try {
+            await AsyncStorage.removeItem(key);
+            console.log('token was deleted'); 
+            navigation.navigate('Login');
+        }
+        catch(exception) {
+            console.log(exception)
+        }
+    }
+ 
+/ Chạy chỉ một lần sau khi màn hình được tạo
+ 
+</View>
+ 
+  //console.log(storedToken);
+       //console.log("UserName",storedUsername);
+       
+ 
+// Lưu roleID vào state
+ 
+  console.log(getOrderDetail)
+ 
+const ID='658046bc55bbb9a461ec1482';
+        const getOrderDetail=await API.requestGET_ORDERS(`/orders?token=${storedToken}&id=${ID}`);
+ 
+    
+    
+    
+ 
+// Lấy giá trị totalAmount từ mỗi đơn hàng
+ 
+ //console.log('Debug: eachPendingProductQuantity', eachPendingProductQuantity);
+ 
+//console.log(totalPayment)
+ 
+  // Các hành động khác cần thực hiện
+ 
+// Xử lý logic khi người dùng nhấn vào một đơn hàng
+ 
+ //console.log(PendingProductQuantity)
+ 
+//setProductQuantity((prevProductQuantity) => [...prevProductQuantity, ...tempQuantity]);
+          //console.log(productQuantity)
+ 
+ <TouchableOpacity onPress={()=>{}}>
+        <View style={styles.menuItem}>
+        <AntDesign
+                  name="heart"
+                  size={20}
+                  color={COLORS.gray}
+                  style={styles.iconStyle}
+                />
+          <Text style={styles.menuText}>Favorites</Text>
+        </View>
+        </TouchableOpacity>
+ 
+
+        <TouchableOpacity onPress={()=>navigation.navigate('Cart')}>
+        <View style={styles.menuItem}>
+        <MaterialCommunityIcons
+                  name="cart"
+                  size={20}
+                  color={COLORS.gray}
+                  style={styles.iconStyle}
+                />
+          <Text style={styles.menuText}>Cart</Text>
+        </View>
+        </TouchableOpacity>
+ 
+  <TouchableOpacity onPress={()=>{}}>
+        <View style={styles.menuItem}>
+        <AntDesign
+                  name="heart"
+                  size={20}
+                  color={COLORS.gray}
+                  style={styles.iconStyle}
+                />
+          <Text style={styles.menuText}>Favorites</Text>
+        </View>
+        </TouchableOpacity>
+ 
+SIZES.medium
+ 
+ lineHeight:26,
+ 
+ fontWeight: 'bold'
+ 
+alignItems: 'center',
+ 
+View >
+ 
+/View>
+ 
+</View>
+ 
+marginVertical: 3,
+ 
+status
+ 
+ borderColor: COLORS.gray2,
+ 
+ borderBottomWidth: 1,
+ 
+style={styles.menuItem}
+ 
+<View style={styles.menuItem}>
+ 
+COLORS.primary
+ 
+COLORS.black
+ 
+ if(userInfor){
+        const { userInfor } = route.params;
+        const { username, phone, address } = userInfor;
+        setUsername(username);
+        setUserAddress(address);
+        setUserPhone(phone);
+      }
+ 
+const getTotalAmount = pendingOrders.map((order) => {
+    // Kiểm tra xem order có tồn tại hay không
+    if (order) {
+      // Kiểm tra xem totalAmount có tồn tại hay không
+      const totalAmount = order.totalAmount || 0;
+  
+      // Lưu totalAmount vào AsyncStorage
+      AsyncStorage.setItem(`totalAmount_${order._id}`, totalAmount.toString());
+  
+      return order.cart.reduce((acc, product) => acc + product.quantity, 0);
+    }
+  
+    return 0;
+  });
+ 
+setUsername()
+ 
+// Sử dụng thông tin người dùng từ tham số truyền vào
+ 
+đã hoàn thành
+ 
+ handleCheckout();
+ 
+Pre
+ 
+productIDs 
+ 
+{route}
+ 
+if (totalQuantity !== undefined && totalQuantity !== null) {
+ 
+const { orderQuantities } = route.params; 
+ 
+console.log(quantities)
+ 
+  const totalAmount = await AsyncStorage.getItem('totalAmount_');
+          //console.log(totalAmount)
+ 
+//console.log(totalAmount)
+ 
+ set(totalQuantities);
+ 
+setTotalQuantityPendingOrders
+ 
+ const [unpaidOrders, setUnpaidOrders] = useState([
+  ]);
+
+ 
+productQuantity
+ 
+    console.log('UserID,ProductIDs')
+   console.log(productIDs)
+ 
+<Text style={styles.productQuantity}>Số lượng: </Text>
+ 
+{item.}
+ 
+  coverImage: {
+      
+    width: '100%',
+    height: SIZES.height/3,
+    resizeMode:"cover"
+  },
+ 
+  infoBottom: {
+    
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  alignItems: 'center', 
+  position: 'relative',
+  height: 50,
+  width: '80%', 
+  marginHorizontal: 'auto',
+  
+  },
+ 
+     
+      {item.images && item.images.length > 0 && (
+        
+  <Image
+    source={{ uri: item.images[0].url }} 
+  />
+)}
+ 
+console.log(item.images.url)
+ 
+//setCompletedOrdersList(response.cart);
+      //setPendingOrdersList(responses.cart);
+ 
+ paddingHorizontal:20
+ 
+console.log(quantities)
+ 
+ setProductQuantity
+ 
+ // Cập nhật state productQuantity bằng giá trị mới
+ 
+// Lưu từng số lượng sản phẩm vào mảng tempQuantity
+ 
+  // Lưu từng số lượng sản phẩm vào mảng productQuantity
+ 
+/ Gọi hàm tính tổng khi danh sách đơn hàng hoàn thành thay đổi
+ 
+// Sử dụng ảnh đầu tiên trong mảng ảnh
+        //style={styles.productImage}
+ 
+<Text style={styles.productDescription}>{item.description}</Text>
+ 
+console.log(products)
+ 
+ // Sử dụng thông tin userInfo ở đây
+            console.log('User Info:', userInfo);
+ 
+ const productID = await API.requestGET_SP(`/products?token=${storedToken}&id=${ productIDs}`);
+ 
+const userId = await API.requestGET_USER_DETAILS(`/users/details?id=${userID}&token=${storedToken}`);
+ 
+ console.log(username,address,phone);
+ 
+const { username,phone,address } = user;
+ 
+const [username, setUsername] = useState('');
+ 
+const OrderDetail= () => {
+    const [username, setUsername] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    useEffect(() => {
+        const getUserDetails = async () => {
+          try {
+            const storedUsername = await AsyncStorage.getItem('username');
+            const storedUserEmail = await AsyncStorage.getItem('email');
+            
+              //console.log(storedToken);
+           //console.log("UserName",storedUsername);
+           
+              setUsername(storedUsername);
+              setUserEmail(storedUserEmail);
+            
+           
+            
+          } catch (error) {
+            console.log('Error getting user details:', error);
+          }
+        };
+    
+        getUserDetails();
+      }, []); 
+ 
+const storedToken = await AsyncStorage.getItem('token');
+ 
+ setToken(storedToken);
+ 
+console.log('Order clicked:', order);
+ 
+  const userInfro = await AsyncStorage.getItem('token');
+ 
+route.params?.userID
+ 
+// Các hành động khác cần thực hiện
+ 
+// Xử lý logic khi người dùng nhấn vào một đơn hàng
+ 
+//import OrderDetail from './app/screens/OrderDetail';
+ 
+borderColor:COLORS.gray2,
+ 
+paddingHorizontal:25,
+ 
+borderBottomWidth:0.2,
+ 
+setUserId(storedUserId);
+ 
+storedUserId
+ 
+const getUserID = await API.requestGET_USER_DETAILS(
+        `/users/details?id=${order.userId}&token=${storedToken}`
+      );
+ 
+=
+ 

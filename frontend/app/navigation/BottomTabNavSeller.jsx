@@ -14,7 +14,7 @@ import HomeSeller from '../screens/seller/HomeSeller';
 import Orders from '../screens/seller/Orders';
 import Products from '../screens/seller/Products';
 import ProfileSeller from '../screens/seller/ProfileSeller';
-
+import SellerProfile from '../screens/profile/SellerProfile';
 const Tab = createBottomTabNavigator();
 const screenOptions = {
   tabBarShowLabel: true,
@@ -68,7 +68,7 @@ const BottomTabNavigationSeller = () => {
       }}></Tab.Screen>
       <Tab.Screen
       name="Cá nhân"
-      component={ProfileSeller}
+      component={SellerProfile}
       options={{
         tabBarIcon: ({focused}) => {
           return <FontAwesome name={focused ? "user" : "user-o"}
